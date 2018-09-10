@@ -15,13 +15,14 @@ import br.com.example.alalgi.aprendaingles.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private ViewPager viewPager;
-    //private SmartTabLayout viewPagerTab;
+    private ViewPager viewPager;
+    private SmartTabLayout viewPagerTab;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setElevation(0);
         getSupportActionBar().setTitle("Aprenda inglês");
 
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
@@ -34,9 +35,11 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
 
-        SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewPagerTab);
+        SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.smartTabLayout);
         viewPagerTab.setViewPager(viewPager);
 
 
     }
+
+
 }
