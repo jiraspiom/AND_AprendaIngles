@@ -1,6 +1,8 @@
 package br.com.example.alalgi.aprendaingles.Activities.Activities.Fragments;
 
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import br.com.example.alalgi.aprendaingles.R;
 
@@ -18,6 +21,7 @@ public class BichosFragment extends Fragment implements View.OnClickListener {
 
 
     private ImageButton buttonCao, buttonGato, buttonLeao, buttonMacaco, buttonOvelha, buttonVaca;
+    private MediaPlayer mediaPlayer;
 
     public BichosFragment() {
         // Required empty public constructor
@@ -52,6 +56,31 @@ public class BichosFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Log.i("Elemento clicado","Item " + getView().getId());
+        // Log.i("Elemento clicado","Item clicado " + v.getId());
+        // Toast.makeText(getContext(), "teste " + v.getId(), Toast.LENGTH_SHORT).show();
+
+        switch (v.getId()){
+            case R.id.buttonCao:
+                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dog);
+                tocarSom();
+                break;
+
+
+
+       }
+    }
+
+    public void tocarSom(){
+        if(mediaPlayer != null){
+            mediaPlayer.start();
+
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
+
+        }
     }
 }
