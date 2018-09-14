@@ -19,7 +19,6 @@ import br.com.example.alalgi.aprendaingles.R;
  */
 public class BichosFragment extends Fragment implements View.OnClickListener {
 
-
     private ImageButton buttonCao, buttonGato, buttonLeao, buttonMacaco, buttonOvelha, buttonVaca;
     private MediaPlayer mediaPlayer;
 
@@ -64,16 +63,40 @@ public class BichosFragment extends Fragment implements View.OnClickListener {
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dog);
                 tocarSom();
                 break;
+            case R.id.buttonGato:
+                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.cat);
+                tocarSom();
+                break;
 
+            case R.id.buttonLeao:
+                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.lion);
+                tocarSom();
+                break;
 
+            case R.id.buttonMacaco:
+                mediaPlayer = MediaPlayer.create(getActivity(),R.raw.monkey);
+                tocarSom();
+                break;
+
+            case R.id.buttonOvelha:
+                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sheep);
+                tocarSom();
+                break;
+
+            case R.id.buttonVaca:
+                mediaPlayer =MediaPlayer.create(getActivity(), R.raw.cow);
+                tocarSom();
+                break;
 
        }
     }
 
     public void tocarSom(){
+        //metodo para tocar som
         if(mediaPlayer != null){
             mediaPlayer.start();
 
+            //quando parar de tocar som
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -81,6 +104,16 @@ public class BichosFragment extends Fragment implements View.OnClickListener {
                 }
             });
 
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        //para liberar e memoria quando o app for destruido
+        super.onDestroy();
+        if(mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
         }
     }
 }
